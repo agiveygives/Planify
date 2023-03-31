@@ -1,11 +1,11 @@
 import 'react-native-gesture-handler';
 import React, {useEffect, useState} from 'react';
-import {Text, SafeAreaView} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import auth from '@react-native-firebase/auth';
-import Onboarding from './screens/auth/Onboarding';
-import Signin from './screens/auth/Signin';
-import Signup from './screens/auth/Signup';
+import DrawerNav from './DrawerNav';
+import Onboarding from '../screens/auth/Onboarding';
+import Signin from '../screens/auth/Signin';
+import Signup from '../screens/auth/Signup';
 
 const Stack = createStackNavigator();
 
@@ -27,17 +27,8 @@ const Routes = () => {
   if (initializing) return null;
 
   if (user) {
-    const logout = () => {
-      auth()
-        .signOut()
-        .then(() => console.log('User signed out!'));
-    }
-
     return (
-      <SafeAreaView>
-        <Text style={{marginHorizontal: 40}}>Welcome</Text>
-        <Text onPress={logout} style={{marginHorizontal: 40}}>Logout</Text>
-      </SafeAreaView>
+      <DrawerNav />
     );
   }
 
